@@ -2,6 +2,8 @@
 
 The app has two views: **Parking** for counting arrivals and **Backstage** for a live visitor graph and summary. Both views share data with every device connected to the same local network.
 
+The interface uses a cozy Christmas palette of warm white, evergreen, and berry red, with subtle festive accents in the background.
+
 ## Run with Docker
 
 1. Install Docker with the Compose plugin.

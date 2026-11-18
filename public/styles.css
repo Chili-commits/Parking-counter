@@ -4,12 +4,12 @@
   --forest-dark: #19392b;
   --green: #2e9b62;
   --mint: #e6f4eb;
-  --cream: #f5f2e9;
-  --paper: #fffefa;
+  --cream: #f8f8f2;
+  --paper: #fff;
   --ink: #1d2b24;
   --muted: #78827b;
   --line: #e7e8df;
-  --red: #bd4d43;
+  --red: #b84440;
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
@@ -18,13 +18,49 @@
 }
 
 body {
+  isolation: isolate;
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(ellipse at 12% 0%, rgba(226, 238, 216, 0.56), transparent 34rem),
-    var(--cream);
+    radial-gradient(ellipse at 8% 18%, rgba(46, 155, 98, 0.11), transparent 27rem),
+    radial-gradient(ellipse at 94% 34%, rgba(184, 68, 64, 0.1), transparent 23rem),
+    var(--paper);
+}
+
+body::before,
+body::after {
+  position: fixed;
+  z-index: 0;
+  top: 20%;
+  color: var(--red);
+  font-size: 44px;
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+body::before {
+  left: clamp(16px, 4vw, 58px);
+  content: "✦";
+  text-shadow:
+    30px 88px 0 rgba(36, 75, 58, 0.75),
+    -6px 174px 0 rgba(184, 68, 64, 0.8);
+}
+
+body::after {
+  right: clamp(16px, 4vw, 58px);
+  color: var(--forest);
+  content: "❄";
+  text-shadow:
+    -30px 98px 0 rgba(184, 68, 64, 0.8),
+    6px 184px 0 rgba(36, 75, 58, 0.75);
+}
+
+.topbar,
+main {
+  position: relative;
+  z-index: 1;
 }
 
 button,
@@ -61,7 +97,8 @@ select {
   place-items: center;
   border-radius: 50%;
   color: white;
-  background: var(--forest);
+  background: var(--red);
+  box-shadow: 0 0 0 3px rgba(46, 155, 98, 0.14);
   font-size: 17px;
 }
 
@@ -437,6 +474,20 @@ h1 {
 }
 
 @media (max-width: 720px) {
+  body::before,
+  body::after {
+    top: 27%;
+    font-size: 32px;
+  }
+
+  body::before {
+    left: 2px;
+  }
+
+  body::after {
+    right: 2px;
+  }
+
   .topbar {
     grid-template-columns: 1fr auto;
     row-gap: 12px;
