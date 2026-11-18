@@ -1,0 +1,11 @@
+services:
+  visitor-counter:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - visitor-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  visitor-data:

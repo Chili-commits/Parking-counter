@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f2e9">
+    <title>Christmas Farm | Parking</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Christmas Farm home">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>Christmas Farm</span>
+      </a>
+      <nav class="tabs" aria-label="Choose interface">
+        <a class="tab active" id="parking-tab" href="?view=parking">Parking</a>
+        <a class="tab" id="backstage-tab" href="?view=backstage">Backstage</a>
+      </nav>
+      <div class="connection" id="connection" role="status" aria-live="polite">
+        <span class="connection-dot"></span>
+        <span id="connection-label">Connecting…</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="view parking-view" id="parking-view">
+        <div class="welcome">
+          <p class="eyebrow">PARKING</p>
+          <h1>A car just arrived?</h1>
+          <p class="intro">Tap once to let Backstage know. The count updates on every connected device.</p>
+        </div>
+        <div class="counter-card">
+          <p class="counter-label">VISITORS COUNTED</p>
+          <output class="visitor-count" id="parking-count" aria-live="polite">0</output>
+          <button class="add-button" id="add-visitor" type="button" aria-label="Add one visitor">
+            <span aria-hidden="true">+</span>
+            <span>Car arrived</span>
+          </button>
+          <button class="undo-button" id="undo-visitor" type="button">Undo last count</button>
+          <p class="updated-label" id="parking-updated">Waiting for the first update</p>
+        </div>
+        <p class="sync-note">Keep this page open while counting. Backstage will update automatically.</p>
+      </section>
+
+      <section class="view backstage-view" id="backstage-view" hidden>
+        <div class="dashboard-heading">
+          <div>
+            <p class="eyebrow">BACKSTAGE</p>
+            <h1>Visitor overview</h1>
+          </div>
+          <label class="period-control">
+            <span>Time interval</span>
+            <select id="timeframe" aria-label="Graph time interval">
+              <option value="1">Last hour</option>
+              <option value="6">Last 6 hours</option>
+              <option value="12">Last 12 hours</option>
+              <option value="24" selected>Last 24 hours</option>
+            </select>
+          </label>
+        </div>
+        <div class="dashboard-grid">
+          <section class="chart-card" aria-labelledby="chart-title">
+            <div class="card-heading">
+              <div>
+                <h2 id="chart-title">Cars visited</h2>
+                <p id="chart-subtitle">Visitors over the last 24 hours</p>
+              </div>
+            </div>
+            <div class="chart-wrap" id="chart-wrap" role="img" aria-label="Visitor count graph">
+              <svg id="visitor-chart" viewBox="0 0 720 320" preserveAspectRatio="none" aria-hidden="true"></svg>
+            </div>
+          </section>
+          <aside class="stats-column" aria-label="Current visitor statistics">
+            <article class="stat-card stat-card-primary">
+              <span class="stat-label">CURRENT LOAD</span>
+              <strong class="stat-value" id="current-load">0</strong>
+              <span class="stat-caption">visitors in selected interval</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-label">LAST TIMEFRAME</span>
+              <strong class="stat-value stat-time" id="last-timeframe">24:00</strong>
+              <span class="stat-caption">selected graph window (HH:MM)</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-label">LAST UPDATE</span>
+              <strong class="stat-value stat-time" id="last-update">--:--</strong>
+              <span class="stat-caption">time since the last count (HH:MM)</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-label">EXPECTED AMOUNT</span>
+              <strong class="stat-value" id="expected-amount">0</strong>
+              <span class="stat-caption">projected visitors for this window</span>
+            </article>
+          </aside>
+        </div>
+      </section>
+    </main>
+    <div class="toast" id="error-message" role="alert" hidden></div>
+  </body>
+</html>
